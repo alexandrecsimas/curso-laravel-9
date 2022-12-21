@@ -11,6 +11,6 @@
     <li> {{ $user->email }} </li>
     {{-- <li> {{ $user->created_at }} </li> --}}
 </ul>
-<a href="{{ route('users.index') }}">Voltar</a>
+<a href="{{ route('users.index') }}">Home</a>
 @endsection
 
