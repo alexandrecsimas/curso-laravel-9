@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('title', 'Listagem do Usuário');
+
+@section('content')
+
 <h1>Listagem do usuário {{ $user->name }}</h1>
 
 <ul>
@@ -5,4 +11,6 @@
     <li> {{ $user->email }} </li>
     {{-- <li> {{ $user->created_at }} </li> --}}
 </ul>
+<a href="{{ route('users.index') }}">Voltar</a>
+@endsection
 
