@@ -11,8 +11,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::get();
-        // dd($users);
-
         return view('users.index', compact('users'));
     }
    
@@ -44,6 +42,21 @@ class UserController extends Controller
 
         // return redirect()->route('users.show', $user->id);
         return redirect()->route('users.index');
+    }
+
+    public function edit($id)
+    {
+        if (!$user = User::find($id))
+            return redirect()->route('users.index');
+        return view('users.edit', compact('user'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        if (!$user = User::find($id))
+            return redirect()->route('users.index');
+        // return view('users.edit', compact('user'));
+        dd($request->all());
     }
     
 }

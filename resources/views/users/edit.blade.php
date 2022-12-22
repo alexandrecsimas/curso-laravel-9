@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Novo Usuário')
+@section('title', "Editar o usuário {$user->name}")
 
 @section('content')
 
-<h1>Novo usuário</h1>
+<h1>Editar o usuário {{ $user->name }}</h1>
 
 @if ($errors->any())
     <ul class="errors">
@@ -15,14 +15,16 @@
 
 @endif
 
-<form action="{{ route('users.store') }}" method="post">
+<form action="{{ route('users.update', $user->id) }}" method="post">
     {{-- {{ csrf_token() }} --}}
     @csrf
-    <input type="text" name="name" placeholder="Nome:" value="{{ old('name') }}">
-    <input type="email" name="email" placeholder="E-mail:" value="{{ old('email') }}">
+    {{-- <input type="hidden" name="_method" value="put"> --}}
+    @method('put')
+    <input type="text" name="name" placeholder="Nome:" value="{{ $user->name }}">
+    <input type="email" name="email" placeholder="E-mail:" value="{{ $user->email }}">
     <input type="password" name="password" placeholder="Senha:">
     <button type="submit">Enviar</button>
 </form>
-
+<br>
 <a href="{{ route('users.index') }}">Home</a>
 @endsection
