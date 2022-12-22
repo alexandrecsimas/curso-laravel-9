@@ -4,7 +4,7 @@
     
 @section('content')
 <h1>
-    Listagem dos usuários
+    Listagem dos usuários 
     (<a href="{{ route('users.create') }}">+</a>)
 </h1>
 
