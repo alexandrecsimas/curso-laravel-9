@@ -26,6 +26,8 @@ Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edi
 // Route::put edits all records - Route::patch edits some records (keep others)
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
 Route::get('/', function () {
     return view('welcome');
 });

@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
+        $search = $request->search;
+        $users = User::where(function($query) use ($search){
+            if ($search){
+                $query->where('email', $search);
+                $query->orWhere('name', 'like', "%{$search}%");
+            }
+        })->get();
+
+        // toSql(); // shows the query
+        // dd($users);
         return view('users.index', compact('users'));
     }
    
@@ -65,4 +74,12 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
     
+    public function destroy($id)
+    {
+        // $user = User::where('id', $id)->first();
+        if (!$user = User::find($id))
+            return redirect()->route('users.index');
+        $user->delete();
+        return redirect()->route('users.index');
+    }
 }
